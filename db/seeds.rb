@@ -13,28 +13,28 @@
 
 require 'FFaker' #TODO: do I need this?
 
-JobOffer.create!( title: "Example Job Title",
-                  company_name: "Example Company",
-                  contact_name: "Example Name",
-                  description: "Interesting details",
-                  duration: "12 months",
-                  location: "US",
-                  misc_info: "tralala",
-                  paid: true,
-                  url: "http://www.google.com",
-                  activated: true,
-                  activated_at: Time.zone.now)
+# JobOffer.create!( title: "Example Job Title",
+#                   company_name: "Example Company",
+#                   contact_name: "Example Name",
+#                   description: "Interesting details",
+#                   duration: "12 months",
+#                   location: "US",
+#                   misc_info: "tralala",
+#                   paid: true,
+#                   url: "http://www.google.com",
+#                   activated: true,
+#                   activated_at: Time.zone.now)
 
-    99.times do |j|
+    4.times do
        title = FFaker::Job.title
        company_name = FFaker::Company.name
        contact_name = FFaker::Name.name
        description = FFaker::HipsterIpsum.phrase
-       duration = "#{Random.new.rand(3..24)} months"
-       location = FFaker::Address.country
-       misc_info = FFaker::Company.bs
-       paid = FFaker::Boolean.random
-       url = FFaker::Internet.http_url
+       duration = "#{Random.new.rand(3..24)} months"  #type is string
+       location = FFaker::Address.country             #type is string
+       misc_info = FFaker::Company.bs                 #type is string
+       paid = FFaker::Boolean.random                  #type is bool
+       url = FFaker::Internet.http_url                #url is string
        activated = true
        activated_at = Time.zone.now
 
