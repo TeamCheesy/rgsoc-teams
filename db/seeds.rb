@@ -12,10 +12,24 @@
   # user = User.create!([{name: 'Wolverine', roles: role, github_handle: 'Adminis28'}])
 
 
-4.times do
+# title = FFaker::Job.title
+# company_name = FFaker::Company.name
+# contact_name = FFaker::Name.name
+# contact_email = FFaker::Internet.safe_email
+# description = FFaker::HipsterIpsum.phrase
+# duration = "#{Random.new.rand(3..24)} months"  #type is string or like this: "#{[3,6,12,24].sample} months"
+# location = FFaker::Address.country             #type is string
+# misc_info = FFaker::Company.bs                 #type is string
+#@paid = FFaker::Boolean.random                  #type is bool
+# url = FFaker::Internet.http_url                #url is string
+# activated = true
+# activated_at = Time.zone.now
+
+5.times do
    title = FFaker::Job.title
    company_name = FFaker::Company.name
    contact_name = FFaker::Name.name
+   contact_email = FFaker::Internet.safe_email
    description = FFaker::HipsterIpsum.phrase
    duration = "#{Random.new.rand(3..24)} months"  #type is string or like this: "#{[3,6,12,24].sample} months"
    location = FFaker::Address.country             #type is string
@@ -25,18 +39,19 @@
    activated = true
    activated_at = Time.zone.now
 
-  JobOffer.create!(title: title,
-     company_name: company_name,
-     contact_name: contact_name,
-     description: description,
-     duration: duration,
-     location: location,
-     misc_info: misc_info,
-     paid: true,
-     url: url,
-     activated: true,
-     activated_at: Time.zone.now)
- end
+   JobOffer.create!(title: title,
+    company_name: company_name,
+    contact_name: contact_name,
+    contact_email: contact_email,
+    description: description,
+    duration: duration,
+    location: location,
+    misc_info: misc_info,
+    paid: paid,
+    url: url)
+    #activated: true,
+    #activated_at: Time.zone.now)
+end
 
 # TEMP comments, during development (and coaching)
 # One extra, to check if non activated offer will not show up on page
