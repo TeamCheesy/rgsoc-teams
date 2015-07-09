@@ -3,7 +3,7 @@
   # role = Role.create!([{name: 'organizer'}])
   # user = User.create!([{name: 'Wolverine', roles: role, github_handle: 'Adminis28'}])
 
-
+#Creating fake job offers
 5.times do
   JobOffer.create!(title: FFaker::Job.title,
                    company_name: FFaker::Company.name,
@@ -17,7 +17,7 @@
                    url: FFaker::Internet.http_url )
 end
 
-
+#Creating fake users...
 10.times do
   fake_gh_id = (1..9).to_a.shuffle[0..4].join.to_i
   name = FFaker::Name.first_name
@@ -26,19 +26,19 @@ end
   user = User.create!(name: name, github_id: fake_gh_id, github_handle: fake_handle )
 end
 
+#..and assigning them a role
 User.all.each do |u|
   #Note to self Here I call the constants roles from Role class, they are not in roles database
-  #role = Role::TEAM_ROLES.sample
-  role = %w[mentor student coach].sample
+  role = Role::TEAM_ROLES.sample              #role = %w[mentor student coach].sample
+  #...and here I create the role in the roles database
   u.roles.create!(name: role)
 end
 
+
 user = User.create(name: "Cheese", github_id: 12345, github_handle: "maudgh")
 user.roles.create!(name: "organizer")
-#user.roles.create!(name: "student")
 user.roles.create!(name: "developer")
-user.roles.create!(name: "coach")
-user.roles.create!(name: "mentor")
+
 
 
 
