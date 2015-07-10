@@ -18,7 +18,10 @@
 end
 
 #Creating fake users...
+#TODO user = FactoryGirl.create :user
+user = FactoryGirl.create :user
 10.times do
+
   fake_gh_id = (1..9).to_a.shuffle[0..4].join.to_i
   name = FFaker::Name.first_name
   fake_handle = "gh" << name.downcase
