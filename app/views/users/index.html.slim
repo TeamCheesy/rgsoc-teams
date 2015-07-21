@@ -40,5 +40,7 @@ table.users.table.table-striped.table-bordered.table-condensed.table-hover
         / td = links_to_conferences(user.conferences).join(', ').html_safe
 
 p.pagination-info
-  = page_entries_info @users
+  = page_entries_info @users.unscope(:group)
   = paginate @users, theme: 'twitter-bootstrap-3', pagination_class: 'pagination-sm'
+  / gets this @users from users index
+    .unscope(:order, :select, :where) == User.all
