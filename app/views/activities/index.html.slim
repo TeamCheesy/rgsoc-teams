@@ -22,6 +22,3 @@ p.pagination-info
 
 - content_for :head do
   = auto_discovery_link_tag(:atom, {action: "index", team: @team, format: "atom" }, {title: "Atom Feed"})
-
-/ team_id: params[:team_id]
-  team: @team,

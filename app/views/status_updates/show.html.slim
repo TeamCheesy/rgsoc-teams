@@ -6,17 +6,13 @@
 p Published #{l @status_update.published_at, format: :long} 
   by #{link_to @status_update.team.display_name, @status_update.team}
 
-
 .well.status_update
   = render_markdown(@status_update.content).html_safe
 
 nav.page
-
   ul
     li = link_to 'All activities', root_path, class: 'back'
 - content_for :title do
   = @status_update.title
 
-/- content_for :head do
-     / = auto_discovery_link_tag(:atom, {action: status_updates_show_path(status)#show }, { title: "Atom Feed"}
-= auto_discovery_link_tag(:atom, status_updates_show_path(@status_update, format: :atom) ,{title:"Atom Feed"})
+= auto_discovery_link_tag(:atom, status_updates_show_path(@status_update, format: :atom), {title:"Atom Feed"})
