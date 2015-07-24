@@ -1,5 +1,8 @@
 = content_tag :h1, @status_update.title
 
+= link_to '<span>Atom Feed</span>'.html_safe, status_updates_show_path(status_update: @status_update, format: :atom),
+          class:'atom'
+
 p Published #{l @status_update.published_at, format: :long} 
   by #{link_to @status_update.team.display_name, @status_update.team}
 
@@ -9,6 +12,7 @@ p Published #{l @status_update.published_at, format: :long}
 nav.page
   ul
     li = link_to 'All activities', root_path, class: 'back'
-
 - content_for :title do
   = @status_update.title
+
+= auto_discovery_link_tag(:atom, status_updates_show_path(@status_update, format: :atom), {title:"Atom Feed"})
