@@ -101,6 +101,7 @@ class User < ActiveRecord::Base
     end
 
     def with_all_associations_joined
+      #changed includes (3x) to eager_load in order to get the Kaminari pagination right
       eager_load(:conferences).
           eager_load(:roles).
           eager_load(roles: {team: :project})
