@@ -7,7 +7,6 @@ class Students::StatusUpdatesController < Students::BaseController
   end
 
   def new
-    # @status_update = current_team.status_updates.build
   end
 
   def create
