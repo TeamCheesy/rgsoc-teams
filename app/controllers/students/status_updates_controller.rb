@@ -6,9 +6,6 @@ class Students::StatusUpdatesController < Students::BaseController
     @status_update = current_team.status_updates.build
   end
 
-  def new
-  end
-
   def create
     @status_update = current_team.status_updates.build(
       status_update_params.merge(published_at: Time.now.utc)
