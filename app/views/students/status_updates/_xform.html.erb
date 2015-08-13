@@ -1,0 +1,5 @@
+<%= form_for ([@status_update, @current_team.status_updates.build])  do | f | %>
+    <p><%= f.text_field :title, placeholder: 'Headline of your update' %></p>
+    <p><%= f.text_area :content, label: 'Text', rows: '7', placeholder: 'Brief summary of your day' %></p>
+    <%= f.submit %>
+<% end %>

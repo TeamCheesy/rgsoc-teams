@@ -1,8 +1,8 @@
 h1 Listing Status Updates
-
-= link_to 'New Status Update', new_students_status_update_path, class: 'btn btn-default'
-
-p
+/This is the button to the form on a new page. We want to get rid of the extra click
+/= link_to 'New Status Update', new_students_status_update_path, class: 'btn btn-default'
+/That is why we want to render the form here:
+= render 'xform'
 
 table.table.table-striped.table-bordered.table-condensed
   thead
