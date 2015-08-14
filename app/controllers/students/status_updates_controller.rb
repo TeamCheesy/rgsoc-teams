@@ -1,6 +1,7 @@
 class Students::StatusUpdatesController < Students::BaseController
-  before_action :find_resource, only: [:show, :edit, :update, :destroy]
+  before_action :find_resource, only: [:new, :create, :show, :edit, :update, :destroy]
 
+  # GET students/status_updates
   def index
     @status_updates = current_team.status_updates.order('created_at DESC')
   end
