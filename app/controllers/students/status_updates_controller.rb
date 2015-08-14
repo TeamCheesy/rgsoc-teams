@@ -6,7 +6,7 @@ class Students::StatusUpdatesController < Students::BaseController
   end
 
   def new
-    @status_updates = current_team.status_updates.order('created_at DESC')
+    @status_updates = current_team.status_updates.ordered
     @status_update = current_team.status_updates.build
   end
 

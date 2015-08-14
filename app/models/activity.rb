@@ -17,7 +17,7 @@ class Activity < ActiveRecord::Base
     end
 
     def ordered
-      order('published_at DESC, id DESC')
+      order("published_at DESC, id DESC")
     end
   end
 
