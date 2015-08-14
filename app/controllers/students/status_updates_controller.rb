@@ -2,7 +2,7 @@ class Students::StatusUpdatesController < Students::BaseController
   before_action :find_resource, only: [:show, :edit, :update, :destroy]
 
   def index
-    @status_updates = current_team.status_updates.order('created_at DESC')
+    redirect_to action: :new
   end
 
   def new
