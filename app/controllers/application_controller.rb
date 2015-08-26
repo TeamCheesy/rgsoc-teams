@@ -45,7 +45,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_season
-    @season ||= Season.current
+    #@season ||= Season.current
+    @season = Season.find(4)
   end
 
   def current_student
