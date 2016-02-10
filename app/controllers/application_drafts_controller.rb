@@ -36,7 +36,8 @@ class ApplicationDraftsController < ApplicationController
   def update
     if application_draft.update(application_draft_params)
       update_student!
-      redirect_to [:edit, application_draft], notice: 'Your application draft was saved.'
+      notice = "Your application draft was saved. You can access it under »#{view_context.link_to "My applications", apply_path}«".html_safe
+      redirect_to [:edit, application_draft], notice: notice
     else
       render :new
     end
@@ -61,7 +62,7 @@ class ApplicationDraftsController < ApplicationController
       flash[:notice] = 'Your application has been submitted!'
       ApplicationFormMailer.new_application(application_draft.application).deliver_later
     else
-      flash[:alert]  = 'An error has occured. Please contact us.'
+      flash[:alert]  = 'An error has occurred. Please contact us.'
     end
     redirect_to application_drafts_path
   end
@@ -70,7 +71,7 @@ class ApplicationDraftsController < ApplicationController
     if application_draft.sign_off!
       flash[:notice] = 'Application draft has been signed off.'
     elsif application_draft.errors.any?
-      flash[:alert] = 'An error has occured. Please contact us.'
+      flash[:alert] = 'An error has occurred. Please contact us.'
     end
     redirect_to application_drafts_url
   end
