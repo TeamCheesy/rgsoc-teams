@@ -113,9 +113,9 @@ class User < ActiveRecord::Base
     end
 
     def with_all_associations_joined
-      includes(:conferences).group("conferences.id").
-      includes(:roles).group("roles.id").
-      includes(roles: :team).group("teams.id")
+      eager_load(:conferences).
+          eager_load(:roles).
+          eager_load(roles: {team: :project})
     end
 
     def with_interest(interest)
