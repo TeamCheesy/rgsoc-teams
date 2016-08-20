@@ -20,7 +20,12 @@ RgsocTeams::Application.routes.draw do
   resources :conferences
   resources :attendances
   resources :contributors, only: :index
+
   resources :status_updates, only: :show
+  namespace :status_updates, only: :show do
+    resources :comments
+  end
+
   resources :projects do
     member do
       get 'receipt', as: :receipt
