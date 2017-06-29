@@ -1,6 +1,6 @@
 class Orga::ConferencesController < Orga::BaseController
   before_action :find_resource, only: [:show, :edit, :update, :destroy]
-
+  
   def import
     Conference::Importer.import(params[:file])
     redirect_to orga_conferences_path, notice: "Import finished! Check log for errors."
@@ -10,20 +10,6 @@ class Orga::ConferencesController < Orga::BaseController
     @conferences = conferences
   end
   
-  def new
-  end
-  
-  def create
-  end
-  
-  def update
-    if @conference.update(conference_params)
-      redirect_to orga_conference_path(@conference)
-    else
-      render action: :edit
-    end
-  end
-
   def destroy
     @conference.destroy!
     redirect_to orga_conferences_path, notice: 'The conference has been deleted.'
