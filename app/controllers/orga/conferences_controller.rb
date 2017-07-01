@@ -1,31 +1,15 @@
 class Orga::ConferencesController < Orga::BaseController
   before_action :find_resource, only: [:show, :edit, :update, :destroy]
-
+  
+  def import
+    Conference::Importer.import(params[:file])
+    redirect_to orga_conferences_path, notice: "Import finished! Check log for errors."
+  end
+  
   def index
     @conferences = conferences
   end
   
-  def new
-    @conference = Conference.new
-  end
-  
-  def create
-    @conference = Conference.new(conference_params.merge(season: current_season))
-    if @conference.save
-     redirect_to orga_conference_path(@conference)
-    else
-      render action: :new
-    end
-  end
-  
-  def update
-    if @conference.update(conference_params)
-      redirect_to orga_conference_path(@conference)
-    else
-      render action: :edit
-    end
-  end
-
   def destroy
     @conference.destroy!
     redirect_to orga_conferences_path, notice: 'The conference has been deleted.'
@@ -43,16 +27,19 @@ class Orga::ConferencesController < Orga::BaseController
 
   def conference_params
     params.require(:conference).permit(
-      :name, :url, :location, :twitter,
-      :tickets, :flights, :accomodation,
-      :starts_on, :ends_on, :round, :lightningtalkslots,
+      :name, :location, :city, :country, :region,
+      :url, :twitter,
+      :starts_on, :ends_on,
+      :round, :lightningtalkslots, :tickets, :flights, :accomodation,
+      :gid, #id in orga's Google Spreadsheet (format: 2017001)
+      :notes,
       attendances_attributes: [:id, :github_handle, :_destroy]
     )
   end
 
   def sort_params
     {
-      order: %w(name location starts_on round).include?(params[:sort]) ? params[:sort] : nil,
+      order: %w(name gid starts_on city country region).include?(params[:sort]) ? params[:sort] : nil,
       direction: %w(asc desc).include?(params[:direction]) ? params[:direction] : nil
     }
   end
